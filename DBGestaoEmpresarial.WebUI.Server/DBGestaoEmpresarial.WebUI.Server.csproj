@@ -17,4 +17,10 @@
     <ProjectReference Include="..\DBGestaoEmpresarial.Infrastructure\DBGestaoEmpresarial.Infrastructure.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.0" />
+	</ItemGroup>
+
 </Project>

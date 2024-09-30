@@ -1,0 +1,33 @@
+﻿@using System.Linq
+
+
+  <h3>List Employes</h3>
+
+    @if (employes == null)
+    {
+            <p>Carregando empregados...</p>
+    }
+    else
+    {
+            <ul>
+            @foreach (var employe in employes)
+            {
+               <li>@employe.Name</li>
+            }
+            </ul>
+    }
+
+@code { 
+    private IEnumerable<Employe> employes; 
+
+    protected override async Task OnInitializedAsync()
+    {
+        employes = await GetAllEmployes(); 
+    }
+
+    public async Task<IEnumerable<Employe>> GetAllEmployes()
+    {
+        var list = await employeRepository.GetAllEmployes(); 
+        return list; // Retorna a lista de empregados
+    }
+}

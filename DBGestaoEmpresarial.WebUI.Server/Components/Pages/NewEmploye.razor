@@ -1,0 +1,50 @@
+﻿
+
+<PageTitle>New Employe</PageTitle>
+
+<div class="row justify-content-center">
+    <EditForm style="display: flex; align-items: center; gap: 1rem;" Method="post" FormName="NewEmploye" OnValidSubmit="AddEmploye" Model="newEmploye">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="col-md-3">
+            <label>Name:</label>
+            <InputText id="titulo" @bind-Value="newEmploye.Name" class="form-control" />
+        </div>
+        
+        <div class="col-md-3">
+            <label>Cargo</label>
+            <InputSelect class="form-control" @bind-Value="newEmploye.IdCargo">
+                <option value="0">Selecione o Cargo</option>
+                <option value="1">Funcionario</option>
+                <option value="2">Gerente</option>
+                <option value="3">Vice-Lider</option>
+            </InputSelect>
+        </div>
+        
+        <div class="col-md-3">
+            <label>Salario</label>
+            <InputNumber class="form-control" @bind-Value="newEmploye.Salario" />
+        </div>
+        
+        <div class="col-md-3 d-flex align-items-end " style="margin-top: 1.5rem;">
+            <button class="btn btn-primary" type="submit">Add Employee</button>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [SupplyParameterFromForm(FormName = "NewEmploye")]
+    public Employe newEmploye { get; set; }
+
+    protected override void OnInitialized()
+    {
+        newEmploye ??= new Employe("", 0, 0, true);
+    }
+
+    public async Task AddEmploye()
+    {
+    
+       await employeRepository.AddEmploye(newEmploye);
+    }
+}

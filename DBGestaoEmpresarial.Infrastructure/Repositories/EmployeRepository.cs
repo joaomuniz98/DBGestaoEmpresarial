@@ -29,7 +29,7 @@ namespace DBGestaoEmpresarial.Infrastructure.Repositories
             }
             else
             {
-                return new Employe();
+                return new Employe("",0,0,true);
             }
         }
 

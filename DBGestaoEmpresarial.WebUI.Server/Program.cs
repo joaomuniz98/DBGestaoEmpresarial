@@ -1,14 +1,15 @@
-using DBGestaoEmpresarial.WebUI.Server.Components;
 using DBGestaoEmpresarial.Application;
 using DBGestaoEmpresarial.Infrastructure;
+using DBGestaoEmpresarial.WebUI.Server.Components;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents(); // Adicione o suporte a componentes interativos
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
@@ -25,6 +26,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>();
+
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+
 
 app.Run();

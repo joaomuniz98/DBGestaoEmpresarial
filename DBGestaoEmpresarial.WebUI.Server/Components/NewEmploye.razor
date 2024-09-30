@@ -1,0 +1,63 @@
+﻿@page "/add-employe"
+
+<PageTitle>New Employe</PageTitle>
+
+<div class="row justify-content-center">
+
+     <div class="col-6">
+         <EditForm method="post" ForName="NewEmployeForm" OnValidSubmit="AddEmploye" Model="newEmploye" >
+
+             <div>
+                 <label>Name:</label>
+                 <InputText id="titulo" @bind-Value="newEmploye.Name"/>
+             </div>
+
+             <div>
+                 <label>Cargo</label>
+                 <InputSelect @bind-Value="newEmploye.IdCargo">
+                     <option value="0">Selecione o Cargo</option>
+                     <option value="1">Funcionario</option>
+                     <option value="2">Gerente</option>
+                     <option value="3">Vice-Lider</option>
+                     </InputSelect>
+             </div>
+
+              <div>
+                 <label>Salario</label>
+                 <InputNumber @bind-Value="newEmploye.Salario"/>
+             </div>
+
+               <div>
+                 <label>Salario</label>
+                 <InputCheckbox @bind-Value="newEmploye.Ativo"/>
+             </div>
+
+             <button type="submit">Add Employee</button>
+
+
+                     <DataAnnotationsValidator/>
+         <ValidationSummary/>
+          </EditForm>
+ 
+     </div>
+
+</div>
+
+
+@code {
+    [SupplyParameterFromForm(FormName = "NewEmployeForm")]
+    public Employe? newEmploye { get; set; }
+
+    protected override void OnInitialized()
+    {
+        newEmploye = new Employe(); // Inicialize diretamente aqui
+    }
+
+    public async Task AddEmploye()
+    {
+        await employeRepository.AddEmploye(newEmploye);
+
+
+    }
+
+}

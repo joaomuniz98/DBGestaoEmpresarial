@@ -1,5 +1,6 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
+@using DBGestaoEmpresarial.Infrastructure.Abstraction
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
@@ -8,3 +9,9 @@
 @using Microsoft.JSInterop
 @using DBGestaoEmpresarial.WebUI.Server
 @using DBGestaoEmpresarial.WebUI.Server.Components
+@using DBGestaoEmpresarial.Domain.Entities
+@using DBGestaoEmpresarial.Infrastructure
+
+
+@inject IEmployesRepository  employeRepository 
+@inject NavigationManager navigation

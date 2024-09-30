@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DBGestaoEmpresarial.Infrastructure.Abstraction;
+using DBGestaoEmpresarial.Infrastructure.Context;
+using DBGestaoEmpresarial.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +14,17 @@ namespace DBGestaoEmpresarial.Infrastructure
 {
     public static class DependencyInjection
     {
-
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+
+            var configurationSQL = configuration.GetConnectionString("SQL");
+
+            services.AddDbContext<MyContext>(options =>
+               options.UseSqlServer(configurationSQL));
+
+            services.AddScoped<IEmployesRepository, EmployeRepository>();
+
+
             return services;
         }
     }

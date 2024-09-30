@@ -5,13 +5,13 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6AFDD528-5554-4B04-A148-9EEB26192617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBGestaoEmpresarial.Domain", "DBGestaoEmpresarial.Domain\DBGestaoEmpresarial.Domain.csproj", "{A3EC56DA-D6F7-46AD-A02F-BE944F705633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBGestaoEmpresarial.Domain", "DBGestaoEmpresarial.Domain\DBGestaoEmpresarial.Domain.csproj", "{A3EC56DA-D6F7-46AD-A02F-BE944F705633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBGestaoEmpresarial.Application", "DBGestaoEmpresarial.Application\DBGestaoEmpresarial.Application.csproj", "{C184055A-6ED0-433C-AE5D-33B49D12AD74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBGestaoEmpresarial.Application", "DBGestaoEmpresarial.Application\DBGestaoEmpresarial.Application.csproj", "{C184055A-6ED0-433C-AE5D-33B49D12AD74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBGestaoEmpresarial.Infrastructure", "DBGestaoEmpresarial.Infrastructure\DBGestaoEmpresarial.Infrastructure.csproj", "{AF5CD5D5-2BA7-4DB3-80E1-ACB69B45A541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBGestaoEmpresarial.Infrastructure", "DBGestaoEmpresarial.Infrastructure\DBGestaoEmpresarial.Infrastructure.csproj", "{AF5CD5D5-2BA7-4DB3-80E1-ACB69B45A541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBGestaoEmpresarial.WebUI.Server", "DBGestaoEmpresarial.WebUI.Server\DBGestaoEmpresarial.WebUI.Server.csproj", "{35C6198F-7293-4125-ACFD-FB8D48FCB6E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBGestaoEmpresarial.WebUI.Server", "DBGestaoEmpresarial.WebUI.Server\DBGestaoEmpresarial.WebUI.Server.csproj", "{35C6198F-7293-4125-ACFD-FB8D48FCB6E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

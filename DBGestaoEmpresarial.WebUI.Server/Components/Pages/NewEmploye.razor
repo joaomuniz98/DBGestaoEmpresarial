@@ -1,4 +1,5 @@
-﻿
+﻿@using DBGestaoEmpresarial.Domain.Entities.Enums
+
 
 <PageTitle>New Employe</PageTitle>
 
@@ -16,9 +17,11 @@
             <label>Cargo</label>
             <InputSelect class="form-control" @bind-Value="newEmploye.IdCargo">
                 <option value="0">Selecione o Cargo</option>
-                <option value="1">Funcionario</option>
-                <option value="2">Gerente</option>
-                <option value="3">Vice-Lider</option>
+                @foreach (EnumRules rules in Enum.GetValues(typeof(EnumRules)))
+                {
+                        <option value="@((int)rules)">@rules</option>
+
+                }
             </InputSelect>
         </div>
         

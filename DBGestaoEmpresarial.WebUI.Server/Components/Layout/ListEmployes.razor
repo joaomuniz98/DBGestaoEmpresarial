@@ -1,7 +1,5 @@
 ﻿@using System.Linq
-
-
-  <h3>List Employes</h3>
+@using DBGestaoEmpresarial.Domain.Entities.Enums
 
     @if (employes == null)
     {
@@ -9,20 +7,50 @@
     }
     else
     {
-            <ul>
-            @foreach (var employe in employes)
+        <div class="div-main">
+        @foreach (var employe in employes)
+        {
+            if (employe.Name != "")
             {
-               <li>@employe.Name</li>
+                  <div class="div-card">
+                        
+                 <div class="div-imagem-profile">
+                    <img class="imagem-profile" src="picture.jpg"  />
+                </div>
+
+                <div>
+                      <div class="row" >
+                          <div class="col-md-12">
+                              <div class="div-info-profile" style="font-size: 30px;">
+                                 <span class="bi bi-person-fill" style="margin: 0px 10px 0px 10px;"> </span>  @employe.Name
+                                 <span class="bi bi-person-workspace" style="margin: 0px 10px 0px 30px;"></span>  @Enum.GetName(typeof(EnumRules), employe.IdCargo) 
+                                 <span class="bi bi-calendar-date" style="margin: 0px 10px 0px 30px;"></span> @employe.DateCreated.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")
+                             </div>
+                          </div>
+
+                             <div class="col-md-12">
+                              <div class="div-info-profile" style="font-size: 15px;">
+                                   <span  style="margin: 0px 10px 0px 10px;font-size: 20px;"><i class="bi bi-cash-coin"></i></span> @employe.Salario.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)
+                             </div>
+                          </div>
+                      </div>
+                 </div>
+            </div>
+
             }
-            </ul>
+          
+        }
+        </div>
     }
 
 @code { 
-    private IEnumerable<Employe> employes; 
+    private IEnumerable<Employe> employes;
+
 
     protected override async Task OnInitializedAsync()
     {
         employes = await GetAllEmployes(); 
+   
     }
 
     public async Task<IEnumerable<Employe>> GetAllEmployes()

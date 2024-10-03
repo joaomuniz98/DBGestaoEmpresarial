@@ -22,6 +22,8 @@ namespace DBGestaoEmpresarial.Infrastructure.Repositories
         {
             if(_context is not null && emp is not null && _context.Employes is not null)
             {
+
+                emp.DateCreated = DateTime.Now;
                 _context.Employes.Add(emp);
                 await  _context.SaveChangesAsync();
 

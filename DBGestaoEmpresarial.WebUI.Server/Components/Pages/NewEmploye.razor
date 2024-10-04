@@ -5,7 +5,7 @@
 
     <EditForm style="display: flex; align-items: center; gap: 1rem;" Method="post" FormName="NewEmploye" OnValidSubmit="AddEmploye" Model="newEmploye">
         <DataAnnotationsValidator />
-        <ValidationSummary />
+      
 
         <div class="w-100">
               <div class="row justify-content-center w-100">
@@ -13,6 +13,7 @@
             <div class="col-md-6">
                 <label>Name</label>
                 <InputText id="titulo" @bind-Value="newEmploye.Name" class="form-control" />
+                <ValidationMessage For="@(() => newEmploye.Name)"></ValidationMessage>
             </div>
         
             <div class="col-md-3">
@@ -25,11 +26,14 @@
 
                     }
                 </InputSelect>
+
+                 <ValidationMessage For="@(() => newEmploye.IdCargo)"></ValidationMessage>
             </div>
         
             <div class="col-md-3">
                 <label>Salario</label>
                 <InputNumber class="form-control" @bind-Value="newEmploye.Salario" />
+                 <ValidationMessage For="@(() => newEmploye.Salario)"></ValidationMessage>
             </div>
 
         </div>
@@ -39,6 +43,7 @@
              <div class="col-md-3">
                  <label>Email</label>
                   <InputText id="email" @bind-Value="newEmploye.Email" class="form-control" />
+                  <ValidationMessage For="@(() => newEmploye.Email)"></ValidationMessage>
               </div>
 
                <div class="col-md-3">
@@ -49,6 +54,7 @@
                <div class="col-md-3">
                  <label>Telefone</label>
                   <InputText id="Telefone" @bind-Value="newEmploye.Telefones" class="form-control" />
+                   <ValidationMessage For="@(() => newEmploye.Telefones)"></ValidationMessage>
               </div>
         
                 <div class="col-md-3 d-flex align-items-end " style="margin-top: 1.5rem;">

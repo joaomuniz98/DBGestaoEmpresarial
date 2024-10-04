@@ -21,19 +21,19 @@
                 <div>
                       <div class="row" >
                           <div class="col-md-12">
-                              <div class="div-info-profile" style="font-size: 30px;">
-                                 <div title="Nome"  alt="Nome"><span class="bi bi-person-fill" style="margin: 0px 10px 0px 10px;"> </span>  @employe.Name</div>
-                                 <div title="Cargo" alt="Cargo"><span class="bi bi-person-workspace"  alt="Cargo" style="margin: 0px 10px 0px 30px;"></span>  @Enum.GetName(typeof(EnumRules), employe.IdCargo) </div>
-                                 <div title="Data Entrada" alt="Data Entrada"><span class="bi bi-calendar-date"  style="margin: 0px 10px 0px 30px;"></span> @employe.DateCreated.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss") </div>
-                                 <div title="Ativo" alt="Ativo" > <span  class="@(employe.Ativo ? "bi bi-toggle-on" : "bi bi-toggle-off")" alt="Ativado"  style="margin: 0px 10px 0px 30px;" ></span>@(employe.Ativo ? "Sim" : "Não") </div>
+                              <div class="div-info-profile" style="font-size: 20px; gap: 30px;">
+                                 <div title="Cargo" alt="Cargo"><span class="bi bi-person-workspace"  alt="Cargo" style="margin: 0px 10px 0px 30px;"></span>  @Enum.GetName(typeof(EnumRules), employe.IdCargo) -  @employe.Name </div>
+                                  <div title="Email"  alt="Email"><span class="bi bi-envelope-fill" style="margin: 0px 10px 0px 10px;"> </span>  @employe.Email</div>
+                                  <div title="Telefone"  alt="Telefone"><span class="bi bi-telephone-fill" style="margin: 0px 10px 0px 10px;"> </span> @String.Format("{0:(##) #####-####}", Convert.ToInt64(@employe.Telefones))</div>
+                                
            
                              </div>
                           </div>
                              <div class="col-md-12">
-                              <div class="div-info-profile" style="font-size: 15px;">
-                                   <div title="Email"  alt="Email"><span class="bi bi-envelope-fill" style="margin: 0px 10px 0px 10px;"> </span>  @employe.Email</div>
-                                               <div title="Telefone"  alt="Telefone"><span class="bi bi-telephone-fill" style="margin: 0px 10px 0px 10px;"> </span> @String.Format("{0:(##) #####-####}",Convert.ToInt64(@employe.Telefones))</div>
-                                   <div  title="Salario" alt="Salario" ><span  style="margin: 0px 10px 0px 10px;font-size: 20px;"><i class="bi bi-cash-coin"></i></span> @employe.Salario.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) </div>
+                              <div class="div-info-profile" style="font-size: 15px;gap: 30px;">
+                                 <div title="Data Entrada" alt="Data Entrada"><span class="bi bi-calendar-date"  style="margin: 0px 10px 0px 30px;"></span> @employe.DateCreated.ToLocalTime().ToString("dd/MM/yyyy") </div>
+                                 <div  title="Salario" alt="Salario" style="display: flex;"><span  style="margin: 0px 10px 0px 10px;font-size: 20px;"></span>$ @employe.Salario.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) </div>
+                                 <div title="Ativo" alt="Ativo" > <span  class="@(employe.Ativo ? "bi bi-toggle-on" : "bi bi-toggle-off")" alt="Ativado" style="margin-right: 10px;"   > </span>  @(employe.Ativo ? "Sim" : "Não")</div>
                              </div>
                           </div>
                       </div>

@@ -20,6 +20,10 @@ namespace DBGestaoEmpresarial.Infrastructure.ConfigurationEntities
           .HasColumnType("decimal(18,2)")
           .IsRequired();
 
+            builder.Property(x => x.Email).HasColumnType("VARCHAR(255)").IsRequired();
+            builder.Property(x => x.Telefones).HasColumnType("VARCHAR(255)").IsRequired();
+            builder.Property(x => x.idFuncionario).ValueGeneratedOnAdd().IsRequired();
+
         }
 
     }

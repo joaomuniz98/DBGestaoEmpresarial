@@ -1,40 +1,66 @@
 ﻿@using DBGestaoEmpresarial.Domain.Entities.Enums
 
 
-<PageTitle>New Employe</PageTitle>
+<PageTitle>Employes</PageTitle>
 
-<div class="row justify-content-center">
     <EditForm style="display: flex; align-items: center; gap: 1rem;" Method="post" FormName="NewEmploye" OnValidSubmit="AddEmploye" Model="newEmploye">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <div class="col-md-3">
-            <label>Name:</label>
-            <InputText id="titulo" @bind-Value="newEmploye.Name" class="form-control" />
-        </div>
-        
-        <div class="col-md-3">
-            <label>Cargo</label>
-            <InputSelect class="form-control" @bind-Value="newEmploye.IdCargo">
-                <option value="0">Selecione o Cargo</option>
-                @foreach (EnumRules rules in Enum.GetValues(typeof(EnumRules)))
-                {
-                        <option value="@((int)rules)">@rules</option>
+        <div class="w-100">
+              <div class="row justify-content-center w-100">
 
-                }
-            </InputSelect>
-        </div>
+            <div class="col-md-6">
+                <label>Name</label>
+                <InputText id="titulo" @bind-Value="newEmploye.Name" class="form-control" />
+            </div>
         
-        <div class="col-md-3">
-            <label>Salario</label>
-            <InputNumber class="form-control" @bind-Value="newEmploye.Salario" />
-        </div>
+            <div class="col-md-3">
+                <label>Cargo</label>
+                <InputSelect class="form-control" @bind-Value="newEmploye.IdCargo">
+                    <option value="0">Selecione o Cargo</option>
+                    @foreach (EnumRules rules in Enum.GetValues(typeof(EnumRules)))
+                    {
+                            <option value="@((int)rules)">@rules</option>
+
+                    }
+                </InputSelect>
+            </div>
         
-        <div class="col-md-3 d-flex align-items-end " style="margin-top: 1.5rem;">
-            <button class="btn btn-primary" type="submit">Add Employee</button>
+            <div class="col-md-3">
+                <label>Salario</label>
+                <InputNumber class="form-control" @bind-Value="newEmploye.Salario" />
+            </div>
+
         </div>
+
+        <div class="row justify-content-center w-100 mt-2">
+
+             <div class="col-md-3">
+                 <label>Email</label>
+                  <InputText id="email" @bind-Value="newEmploye.Email" class="form-control" />
+              </div>
+
+               <div class="col-md-3">
+                 <label>Endereço</label>
+                  <InputText id="Endereço" @bind-Value="newEmploye.Endereco" class="form-control" />
+              </div>
+
+               <div class="col-md-3">
+                 <label>Telefone</label>
+                  <InputText id="Telefone" @bind-Value="newEmploye.Telefones" class="form-control" />
+              </div>
+        
+                <div class="col-md-3 d-flex align-items-end " style="margin-top: 1.5rem;">
+                    <button class="btn btn-primary" type="submit">Add Employee</button>
+                </div>
+        </div>
+
+        </div>
+      
+  
     </EditForm>
-</div>
+
 
 @code {
     [SupplyParameterFromForm(FormName = "NewEmploye")]

@@ -59,20 +59,22 @@ namespace DBGestaoEmpresarial.Infrastructure.Repositories
             }
         }
 
-        public async Task DesativarEmploye(int id)
+        public async Task<bool> DesativarEmploye(int id)
         {
             var employe = await GetEmploye(id);
 
             if (_context is not null && employe is not null && _context.Employes is not null)
             {
                 _context.Employes.Remove(employe);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync(); // Chamada assíncrona
+                return true;
             }
             else
             {
-                throw new Exception("Employe not found.");
+                return false; // Retorna false se o empregado não foi encontrado
             }
         }
+
 
         public async Task<IEnumerable<Employe>> GetAllEmployes()
         {

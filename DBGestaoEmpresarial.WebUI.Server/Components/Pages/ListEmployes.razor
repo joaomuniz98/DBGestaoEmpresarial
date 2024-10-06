@@ -1,0 +1,88 @@
+﻿@using System.Linq
+@using DBGestaoEmpresarial.Domain.Entities.Enums
+@rendermode InteractiveServer
+
+@if (employes == null)
+{
+        <p>Carregando empregados...</p>
+}
+else
+{
+        <div class="div-main">
+        @foreach (var employe in employes)
+        {
+            if (employe.Name != "")
+            {
+                            <div class="div-card">
+                                <div class="div-imagem-profile">
+                                    <img class="imagem-profile" src="picture.jpg" />
+                                </div>
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="div-info-profile" style="font-size: 20px; gap: 30px;">
+                                                <div title="Cargo" alt="Cargo">
+                                                    <span class="bi bi-person-workspace" alt="Cargo" style="margin: 0px 10px 0px 30px;"></span>
+                                        @Enum.GetName(typeof(EnumRules), employe.IdCargo) - @employe.Name
+                                                </div>
+                                                <div title="Email" alt="Email">
+                                                    <span class="bi bi-envelope-fill" style="margin: 0px 10px 0px 10px;"></span> @employe.Email
+                                                </div>
+                                                <div title="Telefone" alt="Telefone">
+                                                    <span class="bi bi-telephone-fill" style="margin: 0px 10px 0px 10px;"></span> @String.Format("{0:(##) #####-####}", Convert.ToInt64(@employe.Telefones))
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="div-info-profile" style="font-size: 15px; gap: 30px;">
+                                                <div title="Data Entrada" alt="Data Entrada">
+                                                    <span class="bi bi-calendar-date" style="margin: 0px 10px 0px 30px;"></span> @employe.DateCreated.ToLocalTime().ToString("dd/MM/yyyy")
+                                                </div>
+                                                <div title="Salario" alt="Salario" style="display: flex;">
+                                                    <span style="margin: 0px 10px 0px 10px;font-size: 20px;"></span>$ @employe.Salario.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)
+                                                </div>
+                                                <div title="Ativo" alt="Ativo">
+                                                    <span class="@(employe.Ativo ? "bi bi-toggle-on" : "bi bi-toggle-off")" alt="Ativado" style="margin-right: 10px;"></span> @(employe.Ativo ? "Sim" : "Não")
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="div-botoes">
+                                    <button class="btn btn-primary">Editar</button>
+                                    <button @onclick="() => DeleteUser(employe.Id)" class="btn btn-danger">Remover</button>
+                                </div>
+                            </div>
+            }
+        }
+        </div>
+}
+
+@code {
+    private IEnumerable<Employe> employes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Inicializando o componente...");
+        employes = await GetAllEmployes();
+    }
+
+    public async Task<IEnumerable<Employe>> GetAllEmployes()
+    {
+        var list = await employeRepository.GetAllEmployes();
+        return list;
+    }
+
+    public async Task DeleteUser(int id)
+    {
+        Console.WriteLine($"Deletando o usuário com Id: {id}");
+        var success = await employeRepository.DesativarEmploye(id);
+        if (success)
+        {
+            employes = employes.Where(e => e.Id != id); 
+            StateHasChanged();
+        }
+    }
+}

@@ -12,7 +12,7 @@ namespace DBGestaoEmpresarial.Infrastructure.Abstraction
         Task<IEnumerable<Employe>> GetAllEmployes();
         Task<Employe?> GetEmploye(int id);
         Task<Employe> AddEmploye(Employe emp);
-        Task DesativarEmploye(int id);
+        Task<bool> DesativarEmploye(int id);
         Task AtualizarEmploye(Employe emp);
     }
 }

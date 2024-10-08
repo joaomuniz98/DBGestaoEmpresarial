@@ -32,7 +32,7 @@ namespace DBGestaoEmpresarial.Infrastructure.Repositories
             }
             else
             {
-                return new Employe("",0,0,true);
+                return new Employe();
             }
         }
 

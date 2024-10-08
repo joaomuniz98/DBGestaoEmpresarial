@@ -25,11 +25,5 @@ public class Employe : Base
 
     public Guid idFuncionario { get; set; }
 
-    public Employe(string name, int idCargo, float salario, bool ativo)
-    {
-        Name = name;
-        IdCargo = idCargo;
-        Salario = salario;
-        Ativo = ativo;
-    }
+
 }

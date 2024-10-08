@@ -16,53 +16,103 @@ else
             if (employe.Name != "")
             {
                 <div class="div-card">
-                    <div class="div-imagem-profile">
-                        <img class="imagem-profile" src="picture.jpg" />
+
+                    <div class="div-primeiro ">
+                        <div class="div-imagem-profile mt-3">
+                         <img class="imagem-profile" src="picture.jpg" />
                     </div>
+                        <div class="div-primeiro mt-3">
+                            <button   @onclick="OpenModal"  class="btn btn-primary w-100">Editar</button>
+                            <button @onclick="() => DeleteUser(employe.Id)" class="btn btn-danger mt-2">Remover</button>
+                        </div>
+                  </div>
 
                     <div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="div-info-profile" style="font-size: 20px; gap: 30px;">
-                                    <div title="Cargo" alt="Cargo">
-                                        <span class="bi bi-person-workspace" alt="Cargo" style="margin: 0px 10px 0px 30px;"></span>
-                                           @Enum.GetName(typeof(EnumRules), employe.IdCargo) - @employe.Name
+                           <div class="col-md-12 p-4" >
+                             <div class="info-profile d-flex flex-column align-items-start p-4 shadow-sm rounded" style="gap: 10px; width: 100%;">
+
+                                    <div class="info-item d-flex align-items-center">
+                                        <span class="bi bi-person-workspace me-2" style="font-size: 24px; color: #0d6efd;"></span>
+                                        <span style="font-size: 20px; font-weight: bold;">@Enum.GetName(typeof(EnumRules), employe.IdCargo)</span> 
+                                       
                                     </div>
-                                    <div title="Email" alt="Email">
-                                        <span class="bi bi-envelope-fill" style="margin: 0px 10px 0px 10px;"></span> @employe.Email
+
+                                    <div>
+                                          <span class="bi bi-person me-2" style="font-size: 24px; color: #0d6efd;"></span>
+                                         <span style="font-size: 20px;">@employe.Name</span>
                                     </div>
-                                    <div title="Telefone" alt="Telefone">
-                                        <span class="bi bi-telephone-fill" style="margin: 0px 10px 0px 10px;"></span> @String.Format("{0:(##) #####-####}", Convert.ToInt64(@employe.Telefones))
+
+                                    <div class="info-item d-flex align-items-center">
+                                        <span class="bi bi-envelope-fill me-2" style="font-size: 24px; color: #0d6efd;"></span>
+                                        <span style="font-size: 18px;">@employe.Email</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="div-info-profile" style="font-size: 15px; gap: 30px;">
-                                    <div title="Data Entrada" alt="Data Entrada">
-                                        <span class="bi bi-calendar-date" style="margin: 0px 10px 0px 30px;"></span> @employe.DateCreated.ToLocalTime().ToString("dd/MM/yyyy")
+
+                                    <div class="info-item d-flex align-items-center">
+                                        <span class="bi bi-telephone-fill me-2" style="font-size: 24px; color: #0d6efd;"></span>
+                                        <span style="font-size: 18px;">@String.Format("{0:(##) #####-####}", Convert.ToInt64(employe.Telefones))</span>
                                     </div>
-                                    <div title="Salario" alt="Salario" style="display: flex;">
-                                        <span style="margin: 0px 10px 0px 10px;font-size: 20px;"></span>$ @employe.Salario.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)
-                                    </div>
-                                    <div title="Ativo" alt="Ativo">
-                                        <span class="@(employe.Ativo ? "bi bi-toggle-on" : "bi bi-toggle-off")" alt="Ativado" style="margin-right: 10px;"></span> @(employe.Ativo ? "Sim" : "Não")
+
+                                    <div class="info-item d-flex align-items-center">
+                                        <span class="bi bi-geo-alt-fill me-2" style="font-size: 24px; color: #0d6efd;"></span>
+                                        <span style="font-size: 18px;">@employe.Endereco</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="div-botoes">
-                         <button   @onclick="OpenModal"  class="btn btn-primary">Editar</button>
-                        <button @onclick="() => DeleteUser(employe.Id)" class="btn btn-danger">Remover</button>
+                      <div>
+                          
+                        </div>
                     </div>
+            
                 </div>
             }
         }
 
-        <Modal @ref="_modal" Id="modalId" Title="Modal Editar"> 
+        <Modal @ref="_modal" Id="modalId" Title="Modal Editar" ModalSize="80%;"> 
                <Body>
-                    <p>This is the body content of the modal.</p>
+                  <div>
+                          <div clas="row " style="gap: 18px;display: flex; ">
+                          <div class="col-md-6">
+                              <span>Nome</span>
+                                 <InputText id="titulo"  @bind-Value="employeEdit.Name" class="form-control" />
+                          </div>
+
+                             <div class="col-md-6">
+
+                           <span>Cargo</span>
+                            <InputSelect class="form-control" @bind-Value="employeEdit.IdCargo">
+                                <option value="0">Selecione o Cargo</option>
+                                @foreach (EnumRules rules in Enum.GetValues(typeof(EnumRules)))
+                                {
+                                  <option value="@((int)rules)">@rules</option>
+                                }
+                            </InputSelect>
+                          </div>
+
+                      </div>
+                     <div clas="row" style="display: flex; gap: 10px;">
+                          <div class="col-md-5">
+                              <span>Email</span>
+                                 <InputText id="txtEmail"  @bind-Value="employeEdit.Email" class="form-control" />
+                          </div
+
+                             <div class="col-md-3">
+                              <span>Telefone</span>
+                                 <InputText id="txtNumero"  @bind-Value="employeEdit.Telefones" class="form-control" />
+                          </div>
+
+                             <div class="col-md-4">
+                              <span>Salario</span>
+                                    <InputNumber class="form-control" @bind-Value="employeEdit.Salario" />
+                          </div>
+
+                      </div>
+                    
+
+                  </div>
+                  
                 </Body>
                 <Footer>
                     <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
@@ -70,12 +120,18 @@ else
         </Modal>
              
        </div>
-}
+       }
 
 @code {
     private IEnumerable<Employe> employes;
- 
+
+    private Employe employeEdit = new Employe();
+
     private Modal _modal;
+
+    public ListEmployes()
+    {
+    }
 
     protected override async Task OnInitializedAsync()
     {

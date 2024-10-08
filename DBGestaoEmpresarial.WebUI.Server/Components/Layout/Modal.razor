@@ -3,7 +3,7 @@
 @if (IsVisible)
 {
     <div class="modal show" tabindex="-1" role="dialog" id="@Id" style="display: block;" aria-modal="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: @ModalSize;" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">@Title</h5>
@@ -11,7 +11,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding: 30px;">
                     @Body
                 </div>
                 @if (!(Footer is null))
@@ -38,6 +38,11 @@
 
     [Parameter]
     public RenderFragment Footer { get; set; }
+
+    [Parameter]
+
+    public string ModalSize { get; set; }
+
 
     private bool IsVisible { get; set; }
 
